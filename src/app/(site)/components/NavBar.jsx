@@ -1,5 +1,5 @@
-import { sanityFetch } from "@/sanity/lib/live";
 import { SITE_SETTINGS_QUERY } from "@/sanity/utilities/queries";
+import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/utilities/imageUrlBuilder";
 import Image from "next/image";
 import { calculateImageHeight } from "../utilities/mediaUtilities";
@@ -7,9 +7,14 @@ import ResponsiveNavBar from "./ResponsiveNavBar";
 import Link from "next/link";
 
 export default async function NavBar() {
-  const { data: siteSettings } = await sanityFetch({
-    query: SITE_SETTINGS_QUERY,
-  });
+  let siteSettings = null;
+
+  try {
+    siteSettings = await client.fetch(SITE_SETTINGS_QUERY);
+  } catch (error) {
+    console.error("Sanity fetch failed:", error);
+    throw error;
+  }
 
   return (
     <header className="relative z-50">
@@ -20,7 +25,7 @@ export default async function NavBar() {
               width={40}
               className="w-full"
               alt={`${siteSettings?.brandName} logo`}
-              height={calculateImageHeight(siteSettings?.logo?.asset._ref, 40)}
+              height={calculateImageHeight(siteSettings?.logo.asset._ref, 40)}
               src={urlFor(siteSettings?.logo).url()}
             />
           </div>
@@ -56,7 +61,7 @@ export default async function NavBar() {
           className="hidden lg:inline-block bg-zinc-900 hover:bg-zinc-950 text-zinc-50 rounded-sm border border-zinc-900 hover:border-zinc-950 px-6 py-3">
           Let's Talk
         </Link>
-        <ResponsiveNavBar />
+        <ResponsiveNavBar siteSettings={siteSettings} />
       </div>
     </header>
   );

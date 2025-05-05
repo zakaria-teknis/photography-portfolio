@@ -1,18 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/utilities/imageUrlBuilder";
-import { SITE_SETTINGS_QUERY } from "@/sanity/utilities/queries";
 import Image from "next/image";
 import { calculateImageHeight } from "../utilities/mediaUtilities";
 import { FaXmark } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa6";
 import Link from "next/link";
 
-export default function ResponsiveNavBar() {
+export default function ResponsiveNavBar({siteSettings}) {
   const [showMenu, setShowMenu] = useState(false);
-  const [siteSettings, setSiteSettings] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,15 +22,6 @@ export default function ResponsiveNavBar() {
 
     return () => window.removeEventListener("resize", handleResize);
   }, [showMenu]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const siteSettings = await client.fetch(SITE_SETTINGS_QUERY);
-      setSiteSettings(siteSettings);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <>

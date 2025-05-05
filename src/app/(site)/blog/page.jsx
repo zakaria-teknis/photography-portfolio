@@ -5,10 +5,17 @@ import AuthorsChoiceSection from "../components/blogPage/AuthorsChoiceSection";
 import LatestPostsSection from "../components/blogPage/LatestPostsSection";
 
 export default async function BlogPage() {
-  const { data: posts } = await sanityFetch({
-    query: BLOG_PAGE_QUERY,
-  });
+  let posts = null;
 
+  try {
+    const res = await sanityFetch({
+      query: BLOG_PAGE_QUERY,
+    });
+    posts = res.data;
+  } catch (error) {
+    console.error("Sanity fetch failed:", error);
+    throw error;
+  }
   return (
     <>
       <div className="flex items-center gap-5 sm:gap-10 pt-6 sm:pt-12 pb-8 sm:pb-16">
@@ -21,10 +28,10 @@ export default async function BlogPage() {
           mainPost={posts?.mainBlogPost}
           heroAreaPosts={posts?.heroAreaBlogPosts}
         />
-        {posts?.authorsChoiceBlogPost && (
+        {posts.authorsChoiceBlogPost && (
           <AuthorsChoiceSection post={posts.authorsChoiceBlogPost} />
         )}
-        {posts?.latestBlogPosts.length > 0 && (
+        {posts.latestBlogPosts.length > 0 && (
           <LatestPostsSection posts={posts.latestBlogPosts} />
         )}
       </section>

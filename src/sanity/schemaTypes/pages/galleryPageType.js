@@ -1,4 +1,4 @@
-export default {
+const galleryPageType = {
   name: "galleryPage",
   title: "Gallery Page",
   type: "document",
@@ -113,3 +113,5 @@ export default {
     },
   ],
 };
+
+export default galleryPageType;

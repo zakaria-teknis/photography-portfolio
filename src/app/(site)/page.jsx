@@ -6,20 +6,34 @@ import WorkSection from "./components/homePage/WorkSection";
 import BlogSection from "./components/homePage/BlogSection";
 import ContactSection from "./components/ContactSection";
 import { sanityFetch } from "@/sanity/lib/live";
-import { HOME_PAGE_QUERY } from "@/sanity/utilities/queries";
 import { SITE_SETTINGS_QUERY } from "@/sanity/utilities/queries";
+import { HOME_PAGE_QUERY } from "@/sanity/utilities/queries";
 import { HOME_PAGE_BLOG_POSTS_QUERY } from "@/sanity/utilities/queries";
 
 export default async function HomePage() {
-  const { data: siteSettings } = await sanityFetch({
-    query: SITE_SETTINGS_QUERY,
-  });
-  const { data: homePage } = await sanityFetch({
-    query: HOME_PAGE_QUERY,
-  });
-  const { data: blogPosts } = await sanityFetch({
-    query: HOME_PAGE_BLOG_POSTS_QUERY,
-  });
+  let siteSettings = null;
+  let homePage = null;
+  let blogPosts = null;
+
+  try {
+    const siteSettingsRes = await sanityFetch({
+      query: SITE_SETTINGS_QUERY,
+    });
+    siteSettings = siteSettingsRes.data;
+
+    const homePageRes = await sanityFetch({
+      query: HOME_PAGE_QUERY,
+    });
+    homePage = homePageRes.data;
+
+    const blogPostsRes = await sanityFetch({
+      query: HOME_PAGE_BLOG_POSTS_QUERY,
+    });
+    blogPosts = blogPostsRes.data;
+  } catch (error) {
+    console.error("Sanity fetch failed:", error);
+    throw error;
+  }
 
   return (
     <>
@@ -47,7 +61,7 @@ export default async function HomePage() {
         buttonText="Let's Start"
       />
       {blogPosts?.length > 0 && <BlogSection blogPosts={blogPosts} />}
-      <ContactSection />
+      <ContactSection/>
     </>
   );
 }

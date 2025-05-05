@@ -1,4 +1,4 @@
-export default {
+const blogPageType = {
   name: "blogPage",
   title: "Blog Page",
   type: "document",
@@ -139,3 +139,5 @@ export default {
     },
   ],
 };
+
+export default blogPageType;

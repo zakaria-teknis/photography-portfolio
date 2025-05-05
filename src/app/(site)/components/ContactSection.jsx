@@ -1,15 +1,21 @@
-import { sanityFetch } from "@/sanity/lib/live";
-import { SITE_SETTINGS_QUERY } from "@/sanity/utilities/queries";
 import { calculateImageHeight } from "../utilities/mediaUtilities";
 import { urlFor } from "@/sanity/utilities/imageUrlBuilder";
 import Image from "next/image";
 import ContactForm from "./ContactForm";
+import { SITE_SETTINGS_QUERY } from "@/sanity/utilities/queries";
+import { client } from "@/sanity/lib/client";
 
-const { data: siteSettings } = await sanityFetch({
-  query: SITE_SETTINGS_QUERY,
-});
 
-export default function ContactSection() {
+export default async function ContactSection() {
+  let siteSettings = null;
+
+  try {
+    siteSettings = await client.fetch(SITE_SETTINGS_QUERY);
+  } catch (error) {
+    console.error("Sanity fetch failed:", error);
+    throw error;
+  }
+
   return (
     <section id="contact" className="p-6 sm:p-12 bg-zinc-950 rounded-b-2xl">
       <div className="flex flex-col gap-5 items-center mb-9 sm:mb-[72px]">

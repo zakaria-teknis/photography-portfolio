@@ -1,14 +1,10 @@
-import { sanityFetch } from "@/sanity/lib/live";
-import { GALLERY_PAGE_VIDEOGRAPHY_QUERY } from "@/sanity/utilities/queries";
 import MediaTypeSection from "./MediaTypeSection";
 
-export default async function VideographySection() {
-  const { data: videography } = await sanityFetch({
-    query: GALLERY_PAGE_VIDEOGRAPHY_QUERY,
-  });
-
+export default async function VideographySection({ videography }) {
   return (
-    <section id="videography" className="pt-12 sm:pt-24 pb-6 sm:pb-12 px-5 sm:px-12 bg-zinc-950">
+    <section
+      id="videography"
+      className="pt-12 sm:pt-24 pb-6 sm:pb-12 px-5 sm:px-12 bg-zinc-950">
       <div className="mx-auto text-center flex flex-col gap-5 items-center mb-9 sm:mb-[72px]">
         <h2 className="text-fluid-5xl font-medium">Videography</h2>
         <p className="max-w-[45ch]">

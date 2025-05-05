@@ -5,25 +5,23 @@ import { calculateImageHeight } from "../../utilities/mediaUtilities";
 import { urlFor } from "@/sanity/utilities/imageUrlBuilder";
 import SanityContent from "../../components/SanityContent";
 
-export async function generateStaticParams() {
-  const slugs = await client.fetch(
-    `*[_type == "blogPost"]{ "slug": slug.current }`
-  );
-
-  return slugs.map((post) => ({
-    slug: post.slug,
-  }));
-}
-
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
 
-  const post = await client.fetch(
-    `*[_type == "blogPost" && slug.current == $slug][0]`,
-    { slug }
-  );
+  let post = null;
+  
+  try {
+    const res = await client.fetch(
+      `*[_type == "blogPost" && slug.current == $slug][0]`,
+      { slug }
+    );
+    post = res;
 
-  if (!post) return notFound();
+    if (!post) return notFound();
+  } catch (error) {
+    console.error("Sanity fetch failed:", error);
+    throw error;
+  }
 
   return (
     <div className="min-h-[85vh] bg-zinc-950 px-6 sm:px-12 pt-7 sm:pt-14 pb-6 sm:pb-12 rounded-2xl flex flex-col gap-6 sm:gap-12">

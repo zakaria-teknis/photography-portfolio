@@ -1,4 +1,4 @@
-export default {
+const blogSectionType = {
   name: "blogSection",
   type: "object",
   title: "Blog Section",
@@ -90,3 +90,5 @@ export default {
     },
   ],
 };
+
+export default blogSectionType;

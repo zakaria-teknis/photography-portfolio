@@ -1,6 +1,6 @@
 import siteSettingsType from "./siteSettingsType";
 import homePageType from "./pages/homePageType";
-import blogPostType from "./blog/bogPostType";
+import blogPostType from "./blog/blogPostType";
 import blogSectionType from "./blog/blogSectionType";
 import galleryPageType from "./pages/galleryPageType";
 import blogPageType from "./pages/blogPageType";

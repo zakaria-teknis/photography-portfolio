@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Outfit } from "next/font/google";
+
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],

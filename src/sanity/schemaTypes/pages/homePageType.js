@@ -1,4 +1,4 @@
-export default {
+const homePageType = {
   name: "homePage",
   title: "Home Page",
   type: "document",
@@ -101,3 +101,5 @@ export default {
     },
   ],
 };
+
+export default homePageType;
