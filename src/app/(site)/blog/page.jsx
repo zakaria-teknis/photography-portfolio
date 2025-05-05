@@ -1,4 +1,4 @@
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { BLOG_PAGE_QUERY } from "@/sanity/utilities/queries";
 import HeroAreaSection from "../components/blogPage/HeroAreaSection";
 import AuthorsChoiceSection from "../components/blogPage/AuthorsChoiceSection";
@@ -8,10 +8,7 @@ export default async function BlogPage() {
   let posts = null;
 
   try {
-    const res = await sanityFetch({
-      query: BLOG_PAGE_QUERY,
-    });
-    posts = res.data;
+    posts = await client.fetch(BLOG_PAGE_QUERY);
   } catch (error) {
     console.error("Sanity fetch failed:", error);
     throw error;

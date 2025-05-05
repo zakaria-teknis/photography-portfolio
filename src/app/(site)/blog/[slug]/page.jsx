@@ -6,10 +6,10 @@ import { urlFor } from "@/sanity/utilities/imageUrlBuilder";
 import SanityContent from "../../components/SanityContent";
 
 export default async function BlogPostPage({ params }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   let post = null;
-  
+
   try {
     const res = await client.fetch(
       `*[_type == "blogPost" && slug.current == $slug][0]`,

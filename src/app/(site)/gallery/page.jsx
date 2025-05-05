@@ -3,6 +3,7 @@ import CTASection from "../components/CTASection";
 import VideographySection from "../components/galleryPage/VideographySection";
 import ContactSection from "../components/ContactSection";
 import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { GALLERY_PAGE_PHOTOGRAPHY_QUERY } from "@/sanity/utilities/queries";
 import { GALLERY_PAGE_VIDEOGRAPHY_QUERY } from "@/sanity/utilities/queries";
 
@@ -11,15 +12,9 @@ export default async function GalleryPage() {
   let videography = null;
 
   try {
-    const photographyRes = await sanityFetch({
-      query: GALLERY_PAGE_PHOTOGRAPHY_QUERY,
-    });
-    photography = photographyRes.data;
+    photography = await client.fetch(GALLERY_PAGE_PHOTOGRAPHY_QUERY);
 
-    const videographyRes = await sanityFetch({
-      query: GALLERY_PAGE_VIDEOGRAPHY_QUERY,
-    });
-    videography = videographyRes.data;
+    videography = await client.fetch(GALLERY_PAGE_VIDEOGRAPHY_QUERY);
   } catch (error) {
     console.error("Sanity fetch failed:", error);
     throw error;
