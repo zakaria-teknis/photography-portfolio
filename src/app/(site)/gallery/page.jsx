@@ -2,7 +2,6 @@ import PhotographySection from "../components/galleryPage/PhotographySection";
 import CTASection from "../components/CTASection";
 import VideographySection from "../components/galleryPage/VideographySection";
 import ContactSection from "../components/ContactSection";
-import { sanityFetch } from "@/sanity/lib/live";
 import { client } from "@/sanity/lib/client";
 import { GALLERY_PAGE_PHOTOGRAPHY_QUERY } from "@/sanity/utilities/queries";
 import { GALLERY_PAGE_VIDEOGRAPHY_QUERY } from "@/sanity/utilities/queries";
