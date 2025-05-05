@@ -41,7 +41,7 @@ export default function FetchedContent({ type, media }) {
                   className="w-full mb-3"
                   width={360}
                   height={calculateImageHeight(image.asset._ref, 360)}
-                  alt={`Photography work photo ${batchIndex * 6 + index + 1}`}
+                  alt="Photography work photo"
                   src={urlFor(image).url()}
                 />
                 <ImageDisplay

@@ -26,10 +26,11 @@ export default function MediaTypeSection({
               {content.map((image, index) => (
                 <div key={index} className="relative w-full">
                   <Image
+                    priority
                     className="w-full mb-3"
                     width={360}
                     height={calculateImageHeight(image.asset._ref, 360)}
-                    alt={`Photography work photo ${index + 1}`}
+                    alt="Photography work photo"
                     src={urlFor(image).url()}
                   />
                   <ImageDisplay images={content} currentIndex={index} />

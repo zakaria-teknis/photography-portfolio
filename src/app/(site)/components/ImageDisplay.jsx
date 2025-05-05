@@ -96,7 +96,7 @@ function Modal({
               className="max-w-[1440px] mx-auto w-full h-auto mb-6 sm:mb-12"
               loading="eager"
               src={urlFor(image).url()}
-              alt=""
+              alt="Photography work photo"
               onLoad={() => setLoadedCount((prev) => prev + 1)}
             />
           ))}

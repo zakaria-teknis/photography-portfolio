@@ -10,8 +10,7 @@ import { SITE_SETTINGS_QUERY } from "@/sanity/utilities/queries";
 import { HOME_PAGE_QUERY } from "@/sanity/utilities/queries";
 import { HOME_PAGE_BLOG_POSTS_QUERY } from "@/sanity/utilities/queries";
 
-// 15.3.1
-// 8 -> 9
+// set NODE_ENV=production
 
 export default async function HomePage() {
   let siteSettings = null;
