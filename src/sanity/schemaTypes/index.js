@@ -1,3 +1,4 @@
+import metadataType from "./metadataType";
 import siteSettingsType from "./siteSettingsType";
 import homePageType from "./pages/homePageType";
 import blogPostType from "./blog/blogPostType";
@@ -7,6 +8,7 @@ import blogPageType from "./pages/blogPageType";
 
 export const schema = {
   types: [
+    metadataType,
     siteSettingsType,
     homePageType,
     blogPostType,

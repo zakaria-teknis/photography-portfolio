@@ -5,6 +5,7 @@ import {
   FaGear,
   FaGlobe,
 } from "react-icons/fa6";
+import { RiRobot2Fill } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -12,7 +13,18 @@ export const structure = (S) =>
   S.list()
     .title("Content")
     .items([
-      // 1. Site Settings (Singleton)
+      // 1. Metadata (Singleton)
+      S.listItem()
+        .title("Metadata")
+        .icon(() => <RiRobot2Fill />)
+        .child(
+          S.document()
+            .schemaType("metadata")
+            .documentId("metadata")
+            .title("Metadata")
+        ),
+
+      // 2. Site Settings (Singleton)
       S.listItem()
         .title("Site Settings")
         .icon(() => <FaGear />)
@@ -23,7 +35,7 @@ export const structure = (S) =>
             .title("Site Settings")
         ),
 
-      // 2. Pages Section
+      // 3. Pages Section
       S.listItem()
         .title("Pages")
         .icon(() => <FaGlobe />)
@@ -64,7 +76,7 @@ export const structure = (S) =>
             ])
         ),
 
-      // 3. Blog Posts (Dynamic List)
+      // 4. Blog Posts (Dynamic List)
       S.listItem()
         .title("Blog Posts")
         .icon(() => <FaEdit />)

@@ -1,5 +1,9 @@
 export const SINGLETON_TYPES = [
   {
+    id: "metadata",
+    title: "Metadata",
+  },
+  {
     id: "siteSettings",
     title: "Site Settings",
   },
