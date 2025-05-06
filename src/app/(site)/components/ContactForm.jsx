@@ -6,6 +6,9 @@ export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
 
   const inputError = (element) => {
@@ -20,7 +23,7 @@ export default function ContactForm() {
     return error ? error.message : "";
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let errors = [];
@@ -57,6 +60,52 @@ export default function ContactForm() {
       setValidationErrors(errors);
       return;
     }
+
+    const formData = new FormData();
+    formData.append("Name", name);
+    formData.append("Email", email);
+    formData.append("Message", message);
+
+    try {
+      setLoading(true);
+      const res = await fetch("https://formspree.io/f/mdkggjoq", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (res.ok) {
+        setValidationErrors([]);
+        setSuccess(true);
+        setError(false);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 5000);
+      }
+
+      if (!res.ok) {
+        setValidationErrors([]);
+        setSuccess(false);
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 5000);
+      }
+    } catch (error) {
+      setValidationErrors([]);
+      setSuccess(false);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    } finally {
+      setLoading(false);
+      setName("");
+      setEmail("");
+      setMessage("");
+    }
   };
 
   return (
@@ -71,6 +120,7 @@ export default function ContactForm() {
             <input
               onChange={(e) => setName(e.target.value)}
               value={name}
+              disabled={loading || success || error}
               aria-labelledby="name-label"
               aria-describedby="name-error"
               className={`font-normal px-3 py-2 border ${inputError("name") ? "border-red-500" : "border-zinc-50"} rounded-sm placeholder:text-zinc-400`}
@@ -98,6 +148,7 @@ export default function ContactForm() {
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              disabled={loading || success || error}
               aria-labelledby="email-label"
               aria-describedby="email-error"
               className={`font-normal px-3 py-2 border ${inputError("email") ? "border-red-500" : "border-zinc-50"} rounded-sm placeholder:text-zinc-400`}
@@ -125,6 +176,7 @@ export default function ContactForm() {
             <textarea
               onChange={(e) => setMessage(e.target.value)}
               value={message}
+              disabled={loading || success || error}
               aria-labelledby="message-label"
               aria-describedby="message-error"
               className={`font-normal px-3 py-2 border ${inputError("message") ? "border-red-500" : "border-zinc-50"} rounded-sm placeholder:text-zinc-400`}
@@ -146,10 +198,17 @@ export default function ContactForm() {
       </div>
       <button
         onClick={(e) => handleSubmit(e)}
+        disabled={loading && success && error}
         id="submit-button"
-        className="font-medium px-4 py-2 text-zinc-950 hover:text-zinc-50 bg-zinc-50 hover:bg-zinc-950 border border-zinc-50 hover:cursor-pointer"
+        className={`text-center font-medium px-4 py-2 border ${loading ? "bg-transparent border-zinc-50" : success ? "bg-green-500 border-green-500" : error ? "bg-red-500 border-red-500" : "bg-zinc-50 border-zinc-50"} ${!loading && !success && !error && "text-zinc-950 hover:cursor-pointer hover:text-zinc-50 hover:bg-zinc-950 border"}`}
         type="submit">
-        Let's begin
+        {loading
+          ? "Sending..."
+          : success
+            ? "Thank you for reaching out! ❤️"
+            : error
+              ? "Something went wrong, please try again in a few seconds."
+              : "Let's begin"}
       </button>
     </form>
   );

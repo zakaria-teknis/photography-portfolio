@@ -193,7 +193,7 @@ const metadataType = {
       options: { accept: "png" },
       group: "openGraph",
       description:
-        "Similar to the above function, but optimized for smaller devices. Make sure the image matches the dimensions listed above so it displays correctly.",
+        "Similar to the image above, but used specifically for WhatsApp. Ensure it follows the dimensions listed above for proper display.",
       validation: (rule) => [
         rule.custom(async (image) => {
           if (!image?.asset?._ref) return true;

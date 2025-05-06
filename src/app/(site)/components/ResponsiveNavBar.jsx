@@ -8,7 +8,7 @@ import { FaXmark } from "react-icons/fa6";
 import { FaBars } from "react-icons/fa6";
 import Link from "next/link";
 
-export default function ResponsiveNavBar({siteSettings}) {
+export default function ResponsiveNavBar({ siteSettings }) {
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
@@ -36,12 +36,14 @@ export default function ResponsiveNavBar({siteSettings}) {
         className={`${!showMenu && "hidden"} z-50 absolute top-0 right-0 bg-zinc-50 w-full max-w-96 h-dvh`}>
         <div className="flex px-5 sm:px-10 py-4 justify-between">
           {siteSettings && (
-            <Image
-              width={40}
-              alt={`${siteSettings.brandName} logo`}
-              height={calculateImageHeight(siteSettings.logo?.asset._ref, 40)}
-              src={urlFor(siteSettings?.logo).url()}
-            />
+            <Link onClick={() => setShowMenu((prev) => !prev)} href="/">
+              <Image
+                width={40}
+                alt={`${siteSettings.brandName} logo`}
+                height={calculateImageHeight(siteSettings.logo?.asset._ref, 40)}
+                src={urlFor(siteSettings?.logo).url()}
+              />
+            </Link>
           )}
           <button
             onClick={() => setShowMenu((prev) => !prev)}
