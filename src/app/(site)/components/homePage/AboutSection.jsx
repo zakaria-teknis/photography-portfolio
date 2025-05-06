@@ -5,9 +5,9 @@ import Image from "next/image";
 export default function AboutSection({ aboutImage, siteSettings }) {
   return (
     <section className="p-6 sm:p-12 bg-zinc-950 flex flex-col lg:flex-row items-center justify-center gap-7 sm:gap-14 lg:gap-28">
-      <div className="relative w-fit shrink-0 order-2 lg:order-1">
+      <div className="relative w-fit h-fit sm-w-[360px] shrink-0 order-2 lg:order-1">
         <Image
-          className="relative w-auto rounded-2xl z-30"
+          className="relative w-full rounded-2xl z-30"
           width={360}
           height={calculateImageHeight(aboutImage?.asset._ref, 360)}
           alt="Owner of the business"

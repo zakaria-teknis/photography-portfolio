@@ -22,7 +22,7 @@ const metadataType = {
   ],
   fields: [
     {
-      name: "dscription",
+      name: "description",
       title: "Description (Required)",
       type: "string",
       group: "general",

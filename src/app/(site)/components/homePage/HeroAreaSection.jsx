@@ -30,7 +30,7 @@ export default function HeroAreaSection({ heroAreaImage, siteSettings }) {
           </Link>
           <a
             href={`https://wa.me/${siteSettings?.phoneNumber}`}
-            className="group bg-[#25D366] hover:bg-transparent flex items-center justify-center gap-2 text-white hover:text-[#25D366] px-6 py-3 font-bold rounded-sm border border-[#25D366]">
+            className="group bg-[#25D366] hover:bg-transparent flex items-center justify-center gap-2 text-zinc-950 hover:text-[#25D366] px-6 py-3 font-bold rounded-sm border border-[#25D366]">
             <FaWhatsapp size={24} />
             Chat on WhatsApp
           </a>
@@ -63,10 +63,10 @@ export default function HeroAreaSection({ heroAreaImage, siteSettings }) {
         </ul>
       </div>
 
-      <div className="relative w-fit shrink-0 lg:bottom-24">
+      <div className="relative w-fit h-fit sm:w-[384px] shrink-0 lg:bottom-24">
         <Image
           priority
-          className="relative w-auto rounded-2xl z-40"
+          className="relative w-full rounded-2xl z-40"
           width={384}
           height={calculateImageHeight(heroAreaImage?.asset._ref, 384)}
           alt="Owner of the business"

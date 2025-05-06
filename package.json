@@ -8,6 +8,14 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions",
+    "not IE 11",
+    "not OperaMini all"
+  ],
   "dependencies": {
     "@portabletext/react": "^3.2.1",
     "@sanity/icons": "^3.7.0",
