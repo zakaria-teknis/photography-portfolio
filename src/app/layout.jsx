@@ -10,7 +10,7 @@ const outfit = Outfit({
 
 export async function generateMetadata() {
   const siteSettings = await client.fetch(
-    `*[_type == "siteSettings"][0]{title}`
+    `*[_type == "siteSettings"][0]{brandName}`
   );
   const metadata = await client.fetch(
     `*[_type == "metadata"][0]{description, favicon256x256, favicon16x16, favicon32x32, favicon48x48, favicon96x96, favicon180x180, favicon192x192, ogImage1200x630, ogImage400x400}`
@@ -19,27 +19,11 @@ export async function generateMetadata() {
   return {
     metadataBase: new URL("https://sallaheddine-hajaoui-portfolio.vercel.app"),
     title: {
-      template: `${siteSettings?.title} | %s`,
-      default: siteSettings?.title,
-      absolute: siteSettings?.title,
+      template: `${siteSettings?.brandName} | %s`,
+      default: siteSettings?.brandName,
+      absolute: siteSettings?.brandName,
     },
     description: metadata?.description,
-    keywords: [
-      "Sallaheddine Hajaoui",
-      "Photography Services",
-      "Videography Services",
-      "Photo Editing",
-      "Video Editing",
-      "Freelance Photographer",
-      "Freelance Videographer",
-      "Freelance Editor",
-      "Professional Photography",
-      "Professional Videography",
-      "Photography in Agadir",
-      "Videography in Agadir",
-      "Editing Services in Agadir",
-      "Sallaheddine Hajaoui Portfolio",
-    ],
     icons: {
       icon: [
         metadata?.favicon256x256 && {
@@ -89,7 +73,7 @@ export async function generateMetadata() {
     },
 
     openGraph: {
-      title: siteSettings?.title,
+      title: siteSettings?.brandName,
       description: metadata?.description,
       url: "https://sallaheddine-hajaoui-portfolio.vercel.app",
       siteName: "Sallaheddine Hajaoui Portfolio",
@@ -108,6 +92,20 @@ export async function generateMetadata() {
       ].filter(Boolean),
       locale: "en_US",
       type: "website",
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
   };
 }

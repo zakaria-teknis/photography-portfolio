@@ -5,8 +5,16 @@ import { calculateImageHeight } from "../../utilities/mediaUtilities";
 import { urlFor } from "@/sanity/utilities/imageUrlBuilder";
 import SanityContent from "../../components/SanityContent";
 
+export async function generateStaticParams() {
+  const slugs = await client.fetch(`*[_type == "blogPost"]{ "slug": slug.current }`);
+
+  return slugs.map((s) => ({ slug: s.slug }));
+}
+
+export const revalidate = 60;
+
 export default async function BlogPostPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   let post = null;
 
