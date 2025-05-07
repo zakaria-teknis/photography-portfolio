@@ -4,6 +4,8 @@ import HeroAreaSection from "../components/blogPage/HeroAreaSection";
 import AuthorsChoiceSection from "../components/blogPage/AuthorsChoiceSection";
 import LatestPostsSection from "../components/blogPage/LatestPostsSection";
 
+export const revalidate = 60;
+
 export default async function BlogPage() {
   let posts = null;
 

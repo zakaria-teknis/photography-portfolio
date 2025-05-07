@@ -6,6 +6,8 @@ import { client } from "@/sanity/lib/client";
 import { GALLERY_PAGE_PHOTOGRAPHY_QUERY } from "@/sanity/utilities/queries";
 import { GALLERY_PAGE_VIDEOGRAPHY_QUERY } from "@/sanity/utilities/queries";
 
+export const revalidate = 60;
+
 export default async function GalleryPage() {
   let photography = null;
   let videography = null;
