@@ -19,6 +19,17 @@ export const useGalleryPageStore = create((set) => ({
   eventVideographyVideos: [],
   creativeVideographyVideos: [],
 
+  resetFetchedContent: () => {
+    set({
+      foodPhotographyImages: [],
+      eventPhotographyImages: [],
+      creativePhotographyImages: [],
+      foodVideographyVideos: [],
+      eventVideographyVideos: [],
+      creativeVideographyVideos: [],
+    });
+  },
+
   foodPhotographyButtonShow: true,
   eventPhotographyButtonShow: true,
   creativePhotographyButtonShow: true,

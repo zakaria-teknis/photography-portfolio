@@ -42,7 +42,7 @@ const homePageType = {
       title: "Photography Work",
       type: "array",
       description:
-        "For better organization, upload images via the Media tab and use 'Select' when adding them. For optimal design, include exactly 6 images—2 of which should have a 9:16 aspect ratio (as shown in the provided design). To reorder images in this section, simply drag and drop them in the desired order.",
+        "For better organization, upload images via the Media tab and use 'Select' when adding them. To reorder images in this section, simply drag and drop them in the desired order.",
       of: [{ type: "image" }],
       group: "work",
       validation: (rule) => [

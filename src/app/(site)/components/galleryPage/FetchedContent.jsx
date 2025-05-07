@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useGalleryPageStore } from "../../store/galleryPage";
 import Image from "next/image";
 import { calculateImageHeight } from "../../utilities/mediaUtilities";
@@ -8,6 +9,12 @@ import ImageDisplay from "../ImageDisplay";
 import VideoDisplay from "../VideoDisplay";
 
 export default function FetchedContent({ type, media }) {
+  const { resetFetchedContent } = useGalleryPageStore();
+
+  useEffect(() => {
+    return () => resetFetchedContent();
+  }, []);
+
   let content = [];
 
   if (media === "Photography") {
