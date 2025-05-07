@@ -10,7 +10,7 @@ import { SITE_SETTINGS_QUERY } from "@/sanity/utilities/queries";
 import { HOME_PAGE_QUERY } from "@/sanity/utilities/queries";
 import { HOME_PAGE_BLOG_POSTS_QUERY } from "@/sanity/utilities/queries";
 
-// set NODE_ENV=production
+export const revalidate = 10;
 
 export default async function HomePage() {
   let siteSettings = null;
