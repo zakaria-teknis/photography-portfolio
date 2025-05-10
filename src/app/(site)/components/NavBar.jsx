@@ -29,11 +29,11 @@ export default async function NavBar() {
               src={urlFor(siteSettings?.logo).url()}
             />
           </div>
-          <span className="text-fluid-xl">{siteSettings?.brandName}</span>
+          <span className="text-fluid-xl font-semibold">{siteSettings?.brandName}</span>
         </Link>
 
         <nav className="hidden lg:block absolute top-1/2 left-1/2 transform -translate-1/2">
-          <ul className="flex items-center gap-8">
+          <ul className="font-semibold flex items-center gap-8">
             <li>
               <Link className="hover:text-zinc-500" href="/">
                 Home

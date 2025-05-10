@@ -46,7 +46,7 @@ export default function AboutSection({ aboutImage, siteSettings }) {
           <br />
           <br />
           If you're looking for high-quality photo and video services in Agadir
-          at affordable prices, Agadir Productions is here to help.
+          at affordable prices, we're here to help.
         </p>
       </div>
     </section>
